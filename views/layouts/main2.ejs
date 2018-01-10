@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>AEONIAN</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <link rel=stylesheet href="https://s3-us-west-2.amazonaws.com/colors-css/2.2.0/colors.min.css">
+    <link rel='stylesheet' href='/stylesheets/reset.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+</head>
+
+<body>
+
+    <header>
+        <!-- create the navigation bar -->
+        <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+            <!-- inside the navbar we have the container of all the buttons -->
+            <div class="container">
+                <div class="navbar-header">
+                    <!-- the button where you can collapse all the options  -->
+                    <button type="submit" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation-fm">
+
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+
+                    </button>
+                    <a href="#" class="navbar-brand">AEONIAN</a>
+                </div>
+                <!-- start menu -->
+                <div class="collapse navbar-collapse" id="navigation-fm">
+                    <ul class="nav navbar-nav">
+                        <li class="active">
+                            <a href="/home">Inicio</a>
+                        </li>
+                        <li>
+                            <a href="#">Profile</a>
+                        </li>
+                        <li>
+                            <a href="/challenges/search">Challenges</a>
+                        </li>
+                        <li>
+                            <a href="/logout">Log out</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+
+    <!-- <div id=" user ">
+        <% if (user) { %>
+            <p>Logged in as
+                <%=user.username%>
+            </p>
+            <% } %>
+    </div> -->
+
+    <%- body %>
+
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js "></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js " integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa "
+            crossorigin="anonymous "></script>
+
+
+</body>
+
+</html>

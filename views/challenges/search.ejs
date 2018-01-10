@@ -1,0 +1,30 @@
+
+<div id="map-search"></div>
+<ul id="wrapper">
+    <% challenger.forEach((challenge) => { %>
+        <ul class="challengerList">
+            <div class="containerList">
+                <div class="display">
+                <h3 class="tittleList">
+                    <%=challenge.challengeName%>
+                </h3>
+                <p class="textList">
+                    <%= challenge.description%>
+                </p>
+                </div>
+                <p>
+                    <a href="/challenges/<%= challenge._id %>">
+                        <button class="buttonSummaryList">Summary</button>
+                    </a>
+
+                    <%= challenge.sport%>
+                </p>
+            </div>
+        </ul>
+        <% }); %>
+</ul>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIoSi4O6j2YmTJQFpyKg7qWHzq3zFs7UA"></script>
+<script type="text/javascript">
+    var challenges = <%- JSON.stringify(challenger) %>;
+</script>
+<script type="text/javascript" src="/javascripts/main-map.js"></script>

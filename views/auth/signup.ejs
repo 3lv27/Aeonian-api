@@ -1,0 +1,23 @@
+
+<div id="login-div">
+    <img id="logo-login" src="/images/aeonian-logo-w.png" alt="aeonian-logo">
+    <form action="/signup" method="POST" id="form">
+        <input type="text" name="username" placeholder="Your User Name">
+        <input type="password" name="password" placeholder="Your Password">
+
+        <% if (typeof message !== "undefined") { %>
+        <div class="error-message">
+            <%= message %>
+        </div>
+            <% } %>
+        <br>
+        <br>
+        <button class="btn">SIGN UP</button>
+
+                
+    </form>
+ 
+</div>
+<div>
+    <a id="sign-log" href="/login">LOG IN</a>
+</div>

@@ -1,0 +1,14 @@
+
+<div>
+    <h1 class="tittle"><%= challenge.challengeName %></h1>
+
+    <p class="text"><%= challenge.description + ' ...'%></p>
+
+    <form id="form" action="/challenges/<%= challenge._id %>/finished %>" method="post" id="form-link">
+        <input id="form input" type="URL" name="Link" placeholder="Link Video">
+        <a>
+            <button class="btn" type="submit">Finnish</button>      
+        </a>
+    </form>
+</div>
+

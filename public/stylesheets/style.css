@@ -1,0 +1,370 @@
+/* -- reset -- */
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+
+/* body {
+  margin: 0;
+  padding: 0;
+}
+
+
+/* -- temp -- */
+
+
+/* div, header, footer {
+  border: 1px solid black;
+} */
+
+html {
+    width: 100vw;
+    height: 100vh;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(120deg, #6600cc 0%, #2575fc 100%);
+    background-repeat: no-repeat;
+}
+
+.navbar-header {
+    background: linear-gradient(120deg, #6600cc 0%, #2575fc 100%);
+}
+
+.navbar-inverse .navbar-brand {
+    color: #fff;
+}
+
+.navbar-inverse .navbar-toggle:hover {
+  background-color: none;
+}
+
+.navbar-inverse .navbar-toggle {
+  border-color: none;
+}
+
+.navbar-inverse .navbar-collapse,
+.navbar-inverse .navbar-form {
+    border-color: none;
+}
+
+
+/* Background animation =========================== BRiAN */
+
+
+/* body {
+	width: 100wh;
+	height: 90vh;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  background-repeat:no-repeat;
+	background: linear-gradient(-25deg, rgba(218, 79, 36, 0.842), #8a2bc3, #de1e1e, rgb(6, 80, 61));
+	background-size: 400% 400%;
+	-webkit-animation: Gradient 9s ease infinite;
+	-moz-animation: Gradient 9s ease infinite;
+	animation: Gradient 9s ease infinite;
+}
+
+@-webkit-keyframes Gradient {
+	0% {
+		background-position: 43% 0%
+	}
+	50% {
+		background-position: 58% 100%
+	}
+	100% {
+		background-position: 43% 0%
+	}
+}
+
+@-moz-keyframes Gradient {
+	0% {
+		background-position: 43% 0%
+}
+	50% {
+		background-position: 58% 100%
+	}
+	100% {
+		background-position: 43% 0%
+	}
+}
+
+@keyframes Gradient {
+	0% {
+		background-position: 43% 0%
+}
+	50% {
+		background-position: 58% 100%
+	}
+	100% {
+		background-position:43% 0%
+	}
+} */
+
+
+/* ========================================================================================  */
+
+a {
+    color: #00B7FF;
+}
+
+
+/* button {
+  background: #43a3e6;
+  border: 1px solid #43a3e6;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  padding: 8px 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: .3s ease background;
+  width: 100%;
+} */
+
+#main-title {
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 360px;
+    margin-top: 12%;
+}
+
+#aeonian {
+    letter-spacing: 10px;
+    font-size: 43px;
+}
+
+#logo {
+    width: 55%;
+    height: auto;
+}
+
+#slogan {
+    letter-spacing: 5px;
+    font-size: 14px;
+}
+
+#home-div-btns {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 150px;
+    margin-top: 8%;
+}
+
+.btn {
+    color: #fff;
+    border-style: none;
+    border: solid rgba(230, 219, 219, 0.7) 1px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    font-size: 89%;
+    background: none;
+    width: 312px;
+    height: 49px;
+    ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    letter-spacing: 2px;
+}
+
+.btn:hover {
+    color: #0062ff;
+    border: solid #fff 2.5px;
+    background: #ffffffe7
+}
+
+#login-div {
+    margin-top: 18%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 400px;
+    width: 100%;
+}
+
+#logo-login {
+    width: 28%;
+    height: auto;
+}
+
+#form input {
+    margin-bottom: 20px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.644);
+    width: 80%;
+    height: 20px;
+    font-size: 13px;
+}
+
+#form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: rgba(234, 240, 241, 0.884);
+}
+
+#sign-log {
+    position: absolute;
+    margin-top: 50px;
+    padding: 109px 0 0 289px;
+    text-decoration: none;
+    color: #fff;
+}
+
+
+/* color: #ff5f5e;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
+  letter-spacing: 4px;
+  border-style: none;
+  border: solid #ff5f5e 1px;
+  font-size: 90%;
+  background: none;
+  margin-top: 15px;
+  width: 57%;
+  height: 18%;
+} */
+
+#map {
+    height: 400px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#map-search {
+    height: 350px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    color: #fff;
+}
+
+.containerList {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 5px 20px 7px;
+}
+
+.display {
+    display: flex;
+    flex-direction: column;
+}
+
+.buttonSummaryList {
+    color: #fff;
+    border-style: none;
+    border: solid rgba(230, 219, 219, 0.7) 1px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    font-size: 89%;
+    background: none;
+    width: 110px;
+    height: 35px;
+    ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+.buttonSummaryList:hover {
+    color: #0062ff;
+    border: solid #fff 2.5px;
+    background: #ffffffe7
+}
+
+.textList {
+  font-size: 11px;
+  margin-top: 4px;
+  color: #fff;
+}
+
+.challenge-description {
+  margin-left: 7px;
+  margin-bottom: 60px;
+  color: #fff;
+    font-size: 11px;
+    margin-top: 4px;
+}
+
+.challenge-description {
+    margin: 10px 0 10px 7px;
+}
+
+#join {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.tittle, .tittleList {
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: capitalize;
+    line-height: 2;
+    text-align: center;
+    color: rgb(255, 255, 255);
+}
+
+.text {
+    font-size: 15px;
+    line-height: 2;
+    text-align: left;
+    color: rgb(255, 255, 255);
+}
+
+.small-buttons {
+  color: #fff;
+    border-style: none;
+    border: solid rgba(230, 219, 219, 0.7) 1px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    font-size: 89%;
+    background: none;
+    width: 110px;
+    height: 35px;
+    ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+.tittleResults {
+    font-size: 30px;
+    font-weight: bold;
+    text-transform: capitalize;
+    line-height: 2;
+    text-align: center;
+    color: rgb(209, 223, 17);
+}

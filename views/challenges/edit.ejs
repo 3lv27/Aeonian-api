@@ -1,0 +1,16 @@
+
+<div id="map"></div>
+
+<div>
+    <form id="form" action="/challenges/edit/<%= challengeId %>" method="POST">
+    <input id="challengeName" name="challengeName" type="text" placeholder="Challenge's name">
+    <input id="description" name="description" type="text" placeholder="Challenge's description">
+
+    <input id="latitude" type="hidden" name="latitude">
+    <input id="longitude" type="hidden" name="longitude">
+    <button class="btn" type="submit">CREATE</button>
+    </form>
+</div>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIoSi4O6j2YmTJQFpyKg7qWHzq3zFs7UA"></script>
+<script type="text/javascript" src="/javascripts/map.js"></script>
