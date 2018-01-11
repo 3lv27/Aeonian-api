@@ -17,8 +17,6 @@ const response = require('./helpers/response');
 
 const auth = require('./routes/auth');
 const challenges = require('./routes/challenges');
-const index = require('./routes/index');
-const users = require('./routes/users');
 
 const app = express();
 
@@ -66,9 +64,7 @@ app.use((req, res, next) => {
 });
 
 //  routes
-app.use('/', index);
 app.use('/', auth);
-app.use('/', users);
 app.use('/challenges', challenges);
 
 // catch 404 and forward to error handler

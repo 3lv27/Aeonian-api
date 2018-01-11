@@ -6,7 +6,7 @@ const express = require('express');
 const router = express.Router();
 
 const Challenge = require('../models/Challenge');
-const response = require('./helpers/response');
+const response = require('../helpers/response');
 
 
 router.get('/select-sport', ensureLogin.ensureLoggedIn(), (req, res, next) => {
@@ -151,12 +151,12 @@ router.post('/:id/results', (req, res, next) => {
       }
 
     });
-    const data = {
+    const enrollData = {
       linkValidation: '',
       enrolled: newEnrolleds
     };
 
-  Challenge.update({ _id: ChallengeId }, { $set: data }, (err, result) => {
+  Challenge.update({ _id: ChallengeId }, { $set: enrollData }, (err, result) => {
       if (err) {
         return next(err);
       }

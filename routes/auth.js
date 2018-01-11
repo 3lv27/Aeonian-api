@@ -13,7 +13,7 @@ const bcrypt = require('bcrypt');
 const bcryptSalt = 10;
 
 // response helper
-const response = require('./helpers/response');
+const response = require('../helpers/response');
 
 /* _____ SIGNUP __________ */
 
@@ -32,19 +32,20 @@ router.post('/signup', (req, res, next) => {
     return response.unprocessable(req, res);
   }
 
+
   User.findOne({
     email ,
     username
-  }, 'email', 'username' (err, userExists) => {
+  }, {email, username }, (err, userExists) => {
     if (err) {
       return next(err);
-    },
+    }
     if (userExists.email) {
       return response.unprocessable(req, res, 'Email already in use.');
-    },
+    }
     if (userExists.username){
       return response.unprocessable(req, res, 'UserName already in use.');
-    },
+    }
 
     const salt = bcrypt.genSaltSync(10);
     const hashPass = bcrypt.hashSync(password, salt);
@@ -100,7 +101,8 @@ router.get('/resume/:id', ensureLogin.ensureLoggedIn(), (req, res, next) => {
   User.findOne({ _id: id }, (req, res, data) => {
     if (err) return next(err)
     return Response.data(req, res, data)
-  })
+  });
+});
 
 
 /* _____ LOGOUT__________ */
@@ -113,3 +115,6 @@ router.post('/logout', (req, res) => {
 
 
 module.exports = router;
+
+
+
