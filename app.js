@@ -80,14 +80,13 @@ app.use(function (req, res, next) {
 
 // error handler
 app.use(function (err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+  // always log the error
   console.error('ERROR', req.method, req.path, err);
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+  // only send response if the error ocurred before sending the response
+  if (!res.headersSent) {
+    return response.unexpectedError(req, res);
+  };
 });
 
 module.exports = app;

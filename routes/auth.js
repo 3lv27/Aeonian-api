@@ -12,103 +12,102 @@ const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const bcryptSalt = 10;
 
+// response helper
+const response = require('./helpers/response');
+
 /* _____ SIGNUP __________ */
 
-router.get('/signup', (req, res, next) => {
-  res.render('auth/signup', { layout: 'layouts/main' });
-});
 
 router.post('/signup', (req, res, next) => {
-  const username = req.body.username;
-  const password = req.body.password;
+  if (req.user) {
+    return response.forbidden(req, res);
+  }
+  const {
+    name,
+    email,
+    password
+  } = req.body;
 
-  if (username === '' || password === '') {
-    res.render('auth/signup', { message: 'Indicate username and password' });
-    return;
+  if (!name || !email || !password) {
+    return response.unprocessable(req, res);
   }
 
-  User.findOne({ username }, 'username', (err, user) => {
+  User.findOne({
+    email ,
+    username
+  }, 'email', 'username' (err, userExists) => {
     if (err) {
-      next(err);
-      return;
-    }
+      return next(err);
+    },
+    if (userExists.email) {
+      return response.unprocessable(req, res, 'Email already in use.');
+    },
+    if (userExists.username){
+      return response.unprocessable(req, res, 'UserName already in use.');
+    },
 
-    if (user) {
-      const data = {
-        message: 'The username already exists'
-      };
-      res.render('auth/signup', data), { layout: 'layouts/main' };
-      return;
-    }
-
-    const salt = bcrypt.genSaltSync(bcryptSalt);
+    const salt = bcrypt.genSaltSync(10);
     const hashPass = bcrypt.hashSync(password, salt);
 
-    const newUser = new User({
+    const newUser = User({
       username,
+      email,
       password: hashPass
     });
 
     newUser.save((err) => {
       if (err) {
-        next(err);
-        return;
+        return next(err);
       }
-
-      req.login(newUser, () => {
-        res.redirect('/home');
+      req.login(newUser, (err) => {
+        if (err) {
+          return next(err);
+        }
+        return response.data(req, res, newUser);
       });
     });
   });
 });
 
+
 /* _____ LOGIN __________ */
 
-router.get('/login', (req, res, next) => {
-  res.render('auth/login'), { layout: 'layouts/main' };
+
+router.post('/login', (req, res, next) => {
+  if (req.user) {
+    return response.forbidden(req, res);
+  }
+  passport.authenticate('local', (err, user, info) => {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      return response.notFound(req, res);
+    }
+    req.login(user, (err) => {
+      if (err) {
+        return next(err);
+      }
+      return response.data(req, res, req.user);
+    });
+  })(req, res, next);
 });
 
-router.post('/login', passport.authenticate('local', {
-  successRedirect: '/home',
-  failureRedirect: '/login',
-  failureFlash: true,
-  passReqToCallback: true
-}));
 
-// private user page
-router.get('/home', ensureLogin.ensureLoggedIn(), (req, res) => {
-  const data = {
-    user: req.user,
-    layout: 'layouts/main2'
-  };
-  res.render('auth/home', data);
-});
 
 router.get('/resume/:id', ensureLogin.ensureLoggedIn(), (req, res, next) => {
   const id = req.params.id;
-  const promise = User.findOne({ _id: id });
-  promise.then((result) => {
-    const data = {
-      user: result,
-      layout: 'layouts/main2'
-    };
-    res.render('auth/resume', data);
-  });
-  promise.catch((error) => {
-    next(error);
-  });
-});
+  User.findOne({ _id: id }, (req, res, data) => {
+    if (err) return next(err)
+    return Response.data(req, res, data)
+  })
+
 
 /* _____ LOGOUT__________ */
 
 router.post('/logout', (req, res) => {
   req.logout();
-  res.redirect('/login');
-});
-
-router.get('/logout', (req, res) => {
-  req.logout();
-  res.redirect('/login');
+  return response.ok(req, res);
 });
 
 
