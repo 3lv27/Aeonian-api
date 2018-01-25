@@ -6,7 +6,7 @@ const express = require('express');
 const router = express.Router();
 
 // User model
-const User = require('../models/User');
+const User = require('../models/User').User;
 
 // Bcrypt to encrypt passwords
 const bcrypt = require('bcrypt');
@@ -23,50 +23,51 @@ router.post('/signup', (req, res, next) => {
     return response.forbidden(req, res);
   }
   const {
-    name,
+    username,
     email,
     password
   } = req.body;
 
-  if (!name || !email || !password) {
+  if (!username || !email || !password) {
     return response.unprocessable(req, res);
   }
 
 
-  User.findOne({
-    email ,
-    username
-  }, {email, username }, (err, userExists) => {
+  User.findOne({username
+  
+  }, (err,  userExist) => {
     if (err) {
       return next(err);
     }
-    if (userExists.email) {
-      return response.unprocessable(req, res, 'Email already in use.');
+    else if (userExist) {
+      return response.unprocessable(req, res, 'Username or email already in use.');
     }
-    if (userExists.username){
-      return response.unprocessable(req, res, 'UserName already in use.');
-    }
+    else {
 
-    const salt = bcrypt.genSaltSync(10);
-    const hashPass = bcrypt.hashSync(password, salt);
+      const salt = bcrypt.genSaltSync(10);
+      const hashPass = bcrypt.hashSync(password, salt);
 
-    const newUser = User({
-      username,
-      email,
-      password: hashPass
-    });
+      const newUser = User({
+        username,
+        email,
+        password: hashPass
+      });
 
-    newUser.save((err) => {
-      if (err) {
-        return next(err);
-      }
-      req.login(newUser, (err) => {
+      newUser.save((err) => {
         if (err) {
           return next(err);
         }
-        return response.data(req, res, newUser);
+        req.login(newUser, (err) => {
+          if (err) {
+            return next(err);
+          }
+          return response.data(req, res, newUser);
+        });
       });
-    });
+    }
+   
+
+
   });
 });
 

@@ -19,13 +19,16 @@ function config() {
     });
 
     // app.use(flash());
-    passport.use(new LocalStrategy({ passReqToCallback: true }, (req, username, password, next) => {
-        User.findOne({ username }, (err, user) => {
+    passport.use(new LocalStrategy({ passReqToCallback: true }, (req, username, email, password, next) => {
+        User.findOne({ username, email }, (err, user) => {
             if (err) {
                 return next(err);
             }
-            if (!user) {
+            if (!username) {
                 return next(null, false, { message: 'Incorrect username' });
+            }
+            if (!email) {
+                return next(null, false, { message: 'Incorrect email' });
             }
             if (!bcrypt.compareSync(password, user.password)) {
                 return next(null, false, { message: 'Incorrect password' });

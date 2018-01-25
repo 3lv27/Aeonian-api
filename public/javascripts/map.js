@@ -1,7 +1,7 @@
 'use strict';
 
 function startMap() {
-  var map = new google.maps.Map(
+  const map = new google.maps.Map(
     document.getElementById('map'),
     {
       zoom: 15
@@ -20,7 +20,7 @@ function startMap() {
       map.setCenter(user_location);
 
       // Add a marker for your user location
-      // var ironHackBCNMarker = new google.maps.Marker({
+      // const ironHackBCNMarker = new google.maps.Marker({
       //   position: {
       //     lat: user_location.lat,
       //     lng: user_location.lng
@@ -36,7 +36,7 @@ function startMap() {
   }
 
   // marker on click
-  var marker;
+  const marker;
 
   map.addListener('click', (event) => {
     placeMarker(event.latLng);

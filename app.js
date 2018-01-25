@@ -11,6 +11,7 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const passport = require('passport');
 const MongoStore = require('connect-mongo')(session);
+const cors = require('cors');
 
 const configurePassport = require('./helpers/passport');
 const response = require('./helpers/response');
@@ -22,7 +23,7 @@ const app = express();
 
 // database config
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/sports-game', {
+mongoose.connect('mongodb://localhost/aeonian', {
   keepAlive: true,
   reconnectTries: Number.MAX_VALUE,
   useMongoClient: true
@@ -40,13 +41,6 @@ configurePassport();
 app.use(passport.initialize());
 app.use(passport.session());
 
-// view engine setup
-app.use(expressLayouts);
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-app.set('layout', 'layouts/main');
-
-
 
 // uncomment after placing your favicon in /public
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -63,9 +57,24 @@ app.use((req, res, next) => {
   next();
 });
 
+
+app.use(function (req, res, next) {
+  //set headers to allow cross origin request.
+  res.header("Access-Control-Allow-Origin", 'http://localhost:8080');
+  res.header("Access-Control-Allow-Methods", "PUT, GET, POST, DELETE, OPTIONS");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  res.header("Access-Control-Allow-Credentials", true);
+  next();
+});
+
 //  routes
 app.use('/', auth);
 app.use('/challenges', challenges);
+
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
