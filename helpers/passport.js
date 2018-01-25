@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const flash = require('connect-flash');
-const User = require('../models/User');
+const User = require('../models/User').User;
 
 function config() {
     passport.serializeUser((user, cb) => {
@@ -19,17 +19,17 @@ function config() {
     });
 
     // app.use(flash());
-    passport.use(new LocalStrategy({ passReqToCallback: true }, (req, username, email, password, next) => {
-        User.findOne({ username, email }, (err, user) => {
+    passport.use(new LocalStrategy({ passReqToCallback: true }, (req, username, password, next) => {
+        User.findOne({ username }, (err, user) => {
             if (err) {
                 return next(err);
             }
-            if (!username) {
+            if (!user) {
                 return next(null, false, { message: 'Incorrect username' });
             }
-            if (!email) {
-                return next(null, false, { message: 'Incorrect email' });
-            }
+            // if (!email) {
+            //     return next(null, false, { message: 'Incorrect email' });
+            // }
             if (!bcrypt.compareSync(password, user.password)) {
                 return next(null, false, { message: 'Incorrect password' });
             }
